@@ -9,10 +9,12 @@ import { APP_GUARD } from '@nestjs/core';
 // Custom auth
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/users/user.module';
+import { ContentModule } from './modules/content/content.module';
 
 @Module({
   imports: [
-    AuthModule,
+    // AuthModule,
+    ContentModule,
     ConfigModule.forRoot({
       isGlobal: true,
       // Load environment variables - update with the path to your .env file

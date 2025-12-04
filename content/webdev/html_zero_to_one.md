@@ -1,4 +1,11 @@
-# HTML Zero to One: Complete Beginner's Guide
+---
+title: "HTML Zero to One"
+description: "Complete beginner's guide to HTML"
+author: "leocodeio"
+tags: ["html", "webdev", "beginner"]
+created: "2024-01-15"
+updated: "2024-12-04"
+---
 
 ## 📚 Table of Contents
 
@@ -96,38 +103,32 @@ Let's create a simple HTML page!
 ### 📖 Line-by-Line Explanation:
 
 1. **`<!DOCTYPE html>`**
-
    - Declares that this is an HTML5 document
    - Must be the **first line** (before any HTML tags)
    - Helps browsers display the page correctly
    - Not case sensitive
 
 2. **`<html>`**
-
    - The **root element** of the HTML page
    - Everything else goes inside this tag
 
 3. **`<head>`**
-
    - Contains **meta information** about the page
    - Not visible to users
    - Includes things like title, links to CSS, etc.
 
 4. **`<title>`**
-
    - Specifies the **title** shown in:
      - Browser's title bar
      - Browser tabs
      - Search engine results
 
 5. **`<body>`**
-
    - Contains all the **visible content**
    - Everything users see goes here:
      - Headings, paragraphs, images, links, tables, lists, etc.
 
 6. **`<h1>`**
-
    - Defines a **large heading**
    - Most important heading on the page
 

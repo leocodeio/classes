@@ -1,0 +1,205 @@
+{
+  "meta": {
+    "title": "HTML Zero to One",
+    "description": "Complete beginner's guide to HTML",
+    "author": "leocodeio",
+    "tags": [
+      "html",
+      "webdev",
+      "beginner"
+    ],
+    "created": "2024-01-15",
+    "updated": "2024-12-04",
+    "totalSlides": 14,
+    "sourceFile": "html_zero_to_one.md"
+  },
+  "slides": [
+    {
+      "id": 1,
+      "title": "Table of Contents",
+      "content": "1. [What is HTML?](#what-is-html)\n2. [Why Learn HTML?](#why-learn-html)\n3. [HTML Basics](#html-basics)\n4. [Your First HTML Document](#your-first-html-document)\n5. [HTML Elements Explained](#html-elements-explained)\n6. [Common HTML Tags](#common-html-tags)\n7. [HTML Document Structure](#html-document-structure)\n8. [Hands-On Practice](#hands-on-practice)",
+      "contentHtml": "<ol>\n<li><a href=\"#what-is-html\">What is HTML?</a></li>\n<li><a href=\"#why-learn-html\">Why Learn HTML?</a></li>\n<li><a href=\"#html-basics\">HTML Basics</a></li>\n<li><a href=\"#your-first-html-document\">Your First HTML Document</a></li>\n<li><a href=\"#html-elements-explained\">HTML Elements Explained</a></li>\n<li><a href=\"#common-html-tags\">Common HTML Tags</a></li>\n<li><a href=\"#html-document-structure\">HTML Document Structure</a></li>\n<li><a href=\"#hands-on-practice\">Hands-On Practice</a></li>\n</ol>\n",
+      "hasCode": false,
+      "codeBlocks": []
+    },
+    {
+      "id": 2,
+      "title": "What is HTML?",
+      "content": "**HTML** stands for **Hyper Text Markup Language**\n\nThink of HTML as the **skeleton** of a website. Just like your skeleton gives structure to your body, HTML gives structure to web pages!\n\n### Key Points:\n\n- 📝 HTML is the **standard markup language** for creating web pages\n- 🏗️ HTML **describes the structure** of a web page\n- 🧩 HTML consists of a series of **elements**\n- 🏷️ HTML elements **label pieces of content** like \"this is a heading\", \"this is a paragraph\", \"this is a link\"\n- 🌐 HTML elements tell the **browser how to display** the content\n\n### Simple Analogy:\n\nIf a website were a house:\n\n- **HTML** = The structure (walls, rooms, doors)\n- **CSS** = The decoration (paint, furniture, style)\n- **JavaScript** = The functionality (lights, plumbing, electricity)",
+      "contentHtml": "<p><strong>HTML</strong> stands for <strong>Hyper Text Markup Language</strong></p>\n<p>Think of HTML as the <strong>skeleton</strong> of a website. Just like your skeleton gives structure to your body, HTML gives structure to web pages!</p>\n<h3>Key Points:</h3>\n<ul>\n<li>📝 HTML is the <strong>standard markup language</strong> for creating web pages</li>\n<li>🏗️ HTML <strong>describes the structure</strong> of a web page</li>\n<li>🧩 HTML consists of a series of <strong>elements</strong></li>\n<li>🏷️ HTML elements <strong>label pieces of content</strong> like &quot;this is a heading&quot;, &quot;this is a paragraph&quot;, &quot;this is a link&quot;</li>\n<li>🌐 HTML elements tell the <strong>browser how to display</strong> the content</li>\n</ul>\n<h3>Simple Analogy:</h3>\n<p>If a website were a house:</p>\n<ul>\n<li><strong>HTML</strong> = The structure (walls, rooms, doors)</li>\n<li><strong>CSS</strong> = The decoration (paint, furniture, style)</li>\n<li><strong>JavaScript</strong> = The functionality (lights, plumbing, electricity)</li>\n</ul>\n",
+      "hasCode": false,
+      "codeBlocks": []
+    },
+    {
+      "id": 3,
+      "title": "Why Learn HTML?",
+      "content": "1. **Foundation of Web Development** - Every website uses HTML\n2. **Easy to Learn** - You can create your first webpage in minutes!\n3. **Universal** - Works on all browsers and devices\n4. **Career Opportunities** - Essential skill for web developers\n5. **Creative Freedom** - Build anything you can imagine!",
+      "contentHtml": "<ol>\n<li><strong>Foundation of Web Development</strong> - Every website uses HTML</li>\n<li><strong>Easy to Learn</strong> - You can create your first webpage in minutes!</li>\n<li><strong>Universal</strong> - Works on all browsers and devices</li>\n<li><strong>Career Opportunities</strong> - Essential skill for web developers</li>\n<li><strong>Creative Freedom</strong> - Build anything you can imagine!</li>\n</ol>\n",
+      "hasCode": false,
+      "codeBlocks": []
+    },
+    {
+      "id": 4,
+      "title": "HTML Basics",
+      "content": "### What is an HTML Element?\n\nAn HTML element is made up of:\n\n- **Start tag** - `<tagname>`\n- **Content** - The text or other elements inside\n- **End tag** - `</tagname>`\n\n```html\n<tagname>Content goes here...</tagname>\n```\n\n### Example:\n\n```html\n<h1>This is a heading</h1>\n<p>This is a paragraph</p>\n```\n\n### Important Notes:\n\n- ⚠️ Some elements have **no content** (called empty elements) like `<br>` - they don't need a closing tag\n- 🔤 HTML is **NOT case sensitive** - `<P>` is the same as `<p>`, but **lowercase is recommended**\n- 🪆 HTML elements can be **nested** (elements inside elements)",
+      "contentHtml": "<h3>What is an HTML Element?</h3>\n<p>An HTML element is made up of:</p>\n<ul>\n<li><strong>Start tag</strong> - <code>&lt;tagname&gt;</code></li>\n<li><strong>Content</strong> - The text or other elements inside</li>\n<li><strong>End tag</strong> - <code>&lt;/tagname&gt;</code></li>\n</ul>\n<pre><code class=\"language-html\">&lt;tagname&gt;Content goes here...&lt;/tagname&gt;\n</code></pre>\n<h3>Example:</h3>\n<pre><code class=\"language-html\">&lt;h1&gt;This is a heading&lt;/h1&gt;\n&lt;p&gt;This is a paragraph&lt;/p&gt;\n</code></pre>\n<h3>Important Notes:</h3>\n<ul>\n<li>⚠️ Some elements have <strong>no content</strong> (called empty elements) like <code>&lt;br&gt;</code> - they don&#39;t need a closing tag</li>\n<li>🔤 HTML is <strong>NOT case sensitive</strong> - <code>&lt;P&gt;</code> is the same as <code>&lt;p&gt;</code>, but <strong>lowercase is recommended</strong></li>\n<li>🪆 HTML elements can be <strong>nested</strong> (elements inside elements)</li>\n</ul>\n",
+      "hasCode": true,
+      "codeBlocks": [
+        {
+          "language": "html",
+          "code": "<tagname>Content goes here...</tagname>"
+        },
+        {
+          "language": "html",
+          "code": "<h1>This is a heading</h1>\n<p>This is a paragraph</p>"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Your First HTML Document",
+      "content": "Let's create a simple HTML page!\n\n```html\n<!DOCTYPE html>\n<html>\n  <head>\n    <title>My First Web Page</title>\n  </head>\n  <body>\n    <h1>Hello, World!</h1>\n    <p>This is my first paragraph.</p>\n  </body>\n</html>\n```\n\n### 📖 Line-by-Line Explanation:\n\n1. **`<!DOCTYPE html>`**\n   - Declares that this is an HTML5 document\n   - Must be the **first line** (before any HTML tags)\n   - Helps browsers display the page correctly\n   - Not case sensitive\n\n2. **`<html>`**\n   - The **root element** of the HTML page\n   - Everything else goes inside this tag\n\n3. **`<head>`**\n   - Contains **meta information** about the page\n   - Not visible to users\n   - Includes things like title, links to CSS, etc.\n\n4. **`<title>`**\n   - Specifies the **title** shown in:\n     - Browser's title bar\n     - Browser tabs\n     - Search engine results\n\n5. **`<body>`**\n   - Contains all the **visible content**\n   - Everything users see goes here:\n     - Headings, paragraphs, images, links, tables, lists, etc.\n\n6. **`<h1>`**\n   - Defines a **large heading**\n   - Most important heading on the page\n\n7. **`<p>`**\n   - Defines a **paragraph**\n   - Used for blocks of text",
+      "contentHtml": "<p>Let&#39;s create a simple HTML page!</p>\n<pre><code class=\"language-html\">&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n  &lt;head&gt;\n    &lt;title&gt;My First Web Page&lt;/title&gt;\n  &lt;/head&gt;\n  &lt;body&gt;\n    &lt;h1&gt;Hello, World!&lt;/h1&gt;\n    &lt;p&gt;This is my first paragraph.&lt;/p&gt;\n  &lt;/body&gt;\n&lt;/html&gt;\n</code></pre>\n<h3>📖 Line-by-Line Explanation:</h3>\n<ol>\n<li><p><strong><code>&lt;!DOCTYPE html&gt;</code></strong></p>\n<ul>\n<li>Declares that this is an HTML5 document</li>\n<li>Must be the <strong>first line</strong> (before any HTML tags)</li>\n<li>Helps browsers display the page correctly</li>\n<li>Not case sensitive</li>\n</ul>\n</li>\n<li><p><strong><code>&lt;html&gt;</code></strong></p>\n<ul>\n<li>The <strong>root element</strong> of the HTML page</li>\n<li>Everything else goes inside this tag</li>\n</ul>\n</li>\n<li><p><strong><code>&lt;head&gt;</code></strong></p>\n<ul>\n<li>Contains <strong>meta information</strong> about the page</li>\n<li>Not visible to users</li>\n<li>Includes things like title, links to CSS, etc.</li>\n</ul>\n</li>\n<li><p><strong><code>&lt;title&gt;</code></strong></p>\n<ul>\n<li>Specifies the <strong>title</strong> shown in:<ul>\n<li>Browser&#39;s title bar</li>\n<li>Browser tabs</li>\n<li>Search engine results</li>\n</ul>\n</li>\n</ul>\n</li>\n<li><p><strong><code>&lt;body&gt;</code></strong></p>\n<ul>\n<li>Contains all the <strong>visible content</strong></li>\n<li>Everything users see goes here:<ul>\n<li>Headings, paragraphs, images, links, tables, lists, etc.</li>\n</ul>\n</li>\n</ul>\n</li>\n<li><p><strong><code>&lt;h1&gt;</code></strong></p>\n<ul>\n<li>Defines a <strong>large heading</strong></li>\n<li>Most important heading on the page</li>\n</ul>\n</li>\n<li><p><strong><code>&lt;p&gt;</code></strong></p>\n<ul>\n<li>Defines a <strong>paragraph</strong></li>\n<li>Used for blocks of text</li>\n</ul>\n</li>\n</ol>\n",
+      "hasCode": true,
+      "codeBlocks": [
+        {
+          "language": "html",
+          "code": "<!DOCTYPE html>\n<html>\n  <head>\n    <title>My First Web Page</title>\n  </head>\n  <body>\n    <h1>Hello, World!</h1>\n    <p>This is my first paragraph.</p>\n  </body>\n</html>"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "HTML Elements Explained",
+      "content": "### Nested Elements\n\nHTML elements can contain other elements. This is called **nesting**.\n\n```html\n<html>\n  <body>\n    <h1>My Website</h1>\n    <p>Welcome to my website!</p>\n  </body>\n</html>\n```\n\n**Explanation:**\n\n- The `<html>` element contains the `<body>` element\n- The `<body>` element contains `<h1>` and `<p>` elements\n- This creates a **hierarchy** or **tree structure**\n\n### Empty Elements\n\nSome elements don't have content and don't need a closing tag:\n\n```html\n<br />\n<!-- Line break -->\n<hr />\n<!-- Horizontal rule/line -->\n<img src=\"image.jpg\" />\n<!-- Image -->\n```\n\n### Never Skip the End Tag!\n\nWhile some browsers might display pages correctly even with missing end tags, **always include them** for:\n\n- ✅ Better code quality\n- ✅ Avoiding unexpected errors\n- ✅ Following best practices\n\n```html\n<!-- ❌ Bad -->\n<p>This is a paragraph</p>\n<p>\n  This is another paragraph\n\n  <!-- ✅ Good -->\n</p>\n\n<p>This is a paragraph</p>\n<p>This is another paragraph</p>\n```",
+      "contentHtml": "<h3>Nested Elements</h3>\n<p>HTML elements can contain other elements. This is called <strong>nesting</strong>.</p>\n<pre><code class=\"language-html\">&lt;html&gt;\n  &lt;body&gt;\n    &lt;h1&gt;My Website&lt;/h1&gt;\n    &lt;p&gt;Welcome to my website!&lt;/p&gt;\n  &lt;/body&gt;\n&lt;/html&gt;\n</code></pre>\n<p><strong>Explanation:</strong></p>\n<ul>\n<li>The <code>&lt;html&gt;</code> element contains the <code>&lt;body&gt;</code> element</li>\n<li>The <code>&lt;body&gt;</code> element contains <code>&lt;h1&gt;</code> and <code>&lt;p&gt;</code> elements</li>\n<li>This creates a <strong>hierarchy</strong> or <strong>tree structure</strong></li>\n</ul>\n<h3>Empty Elements</h3>\n<p>Some elements don&#39;t have content and don&#39;t need a closing tag:</p>\n<pre><code class=\"language-html\">&lt;br /&gt;\n&lt;!-- Line break --&gt;\n&lt;hr /&gt;\n&lt;!-- Horizontal rule/line --&gt;\n&lt;img src=&quot;image.jpg&quot; /&gt;\n&lt;!-- Image --&gt;\n</code></pre>\n<h3>Never Skip the End Tag!</h3>\n<p>While some browsers might display pages correctly even with missing end tags, <strong>always include them</strong> for:</p>\n<ul>\n<li>✅ Better code quality</li>\n<li>✅ Avoiding unexpected errors</li>\n<li>✅ Following best practices</li>\n</ul>\n<pre><code class=\"language-html\">&lt;!-- ❌ Bad --&gt;\n&lt;p&gt;This is a paragraph&lt;/p&gt;\n&lt;p&gt;\n  This is another paragraph\n\n  &lt;!-- ✅ Good --&gt;\n&lt;/p&gt;\n\n&lt;p&gt;This is a paragraph&lt;/p&gt;\n&lt;p&gt;This is another paragraph&lt;/p&gt;\n</code></pre>\n",
+      "hasCode": true,
+      "codeBlocks": [
+        {
+          "language": "html",
+          "code": "<html>\n  <body>\n    <h1>My Website</h1>\n    <p>Welcome to my website!</p>\n  </body>\n</html>"
+        },
+        {
+          "language": "html",
+          "code": "<br />\n<!-- Line break -->\n<hr />\n<!-- Horizontal rule/line -->\n<img src=\"image.jpg\" />\n<!-- Image -->"
+        },
+        {
+          "language": "html",
+          "code": "<!-- ❌ Bad -->\n<p>This is a paragraph</p>\n<p>\n  This is another paragraph\n\n  <!-- ✅ Good -->\n</p>\n\n<p>This is a paragraph</p>\n<p>This is another paragraph</p>"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "️ Common HTML Tags",
+      "content": "### Headings (h1 to h6)\n\nHTML has **6 levels** of headings:\n\n```html\n<h1>Heading 1 - Most Important</h1>\n<h2>Heading 2</h2>\n<h3>Heading 3</h3>\n<h4>Heading 4</h4>\n<h5>Heading 5</h5>\n<h6>Heading 6 - Least Important</h6>\n```\n\n**Tips:**\n\n- Use `<h1>` for main page title (only **one** per page)\n- Use `<h2>` to `<h6>` for subheadings\n- Don't skip levels (don't jump from `<h1>` to `<h4>`)\n\n### Paragraphs\n\n```html\n<p>This is a paragraph of text.</p>\n<p>This is another paragraph.</p>\n```\n\n### Links\n\n```html\n<a href=\"https://www.example.com\">Click here to visit Example.com</a>\n```\n\n- `href` = the URL/destination\n- Text between tags = what users click on\n\n### Images\n\n```html\n<img src=\"image.jpg\" alt=\"Description of image\" />\n```\n\n- `src` = path to the image file\n- `alt` = alternative text (for accessibility and if image doesn't load)\n\n### Line Breaks\n\n```html\n<p>This is line one.<br />This is line two.</p>\n```\n\n### Horizontal Line\n\n```html\n<p>Section 1</p>\n<hr />\n<p>Section 2</p>\n```",
+      "contentHtml": "<h3>Headings (h1 to h6)</h3>\n<p>HTML has <strong>6 levels</strong> of headings:</p>\n<pre><code class=\"language-html\">&lt;h1&gt;Heading 1 - Most Important&lt;/h1&gt;\n&lt;h2&gt;Heading 2&lt;/h2&gt;\n&lt;h3&gt;Heading 3&lt;/h3&gt;\n&lt;h4&gt;Heading 4&lt;/h4&gt;\n&lt;h5&gt;Heading 5&lt;/h5&gt;\n&lt;h6&gt;Heading 6 - Least Important&lt;/h6&gt;\n</code></pre>\n<p><strong>Tips:</strong></p>\n<ul>\n<li>Use <code>&lt;h1&gt;</code> for main page title (only <strong>one</strong> per page)</li>\n<li>Use <code>&lt;h2&gt;</code> to <code>&lt;h6&gt;</code> for subheadings</li>\n<li>Don&#39;t skip levels (don&#39;t jump from <code>&lt;h1&gt;</code> to <code>&lt;h4&gt;</code>)</li>\n</ul>\n<h3>Paragraphs</h3>\n<pre><code class=\"language-html\">&lt;p&gt;This is a paragraph of text.&lt;/p&gt;\n&lt;p&gt;This is another paragraph.&lt;/p&gt;\n</code></pre>\n<h3>Links</h3>\n<pre><code class=\"language-html\">&lt;a href=&quot;https://www.example.com&quot;&gt;Click here to visit Example.com&lt;/a&gt;\n</code></pre>\n<ul>\n<li><code>href</code> = the URL/destination</li>\n<li>Text between tags = what users click on</li>\n</ul>\n<h3>Images</h3>\n<pre><code class=\"language-html\">&lt;img src=&quot;image.jpg&quot; alt=&quot;Description of image&quot; /&gt;\n</code></pre>\n<ul>\n<li><code>src</code> = path to the image file</li>\n<li><code>alt</code> = alternative text (for accessibility and if image doesn&#39;t load)</li>\n</ul>\n<h3>Line Breaks</h3>\n<pre><code class=\"language-html\">&lt;p&gt;This is line one.&lt;br /&gt;This is line two.&lt;/p&gt;\n</code></pre>\n<h3>Horizontal Line</h3>\n<pre><code class=\"language-html\">&lt;p&gt;Section 1&lt;/p&gt;\n&lt;hr /&gt;\n&lt;p&gt;Section 2&lt;/p&gt;\n</code></pre>\n",
+      "hasCode": true,
+      "codeBlocks": [
+        {
+          "language": "html",
+          "code": "<h1>Heading 1 - Most Important</h1>\n<h2>Heading 2</h2>\n<h3>Heading 3</h3>\n<h4>Heading 4</h4>\n<h5>Heading 5</h5>\n<h6>Heading 6 - Least Important</h6>"
+        },
+        {
+          "language": "html",
+          "code": "<p>This is a paragraph of text.</p>\n<p>This is another paragraph.</p>"
+        },
+        {
+          "language": "html",
+          "code": "<a href=\"https://www.example.com\">Click here to visit Example.com</a>"
+        },
+        {
+          "language": "html",
+          "code": "<img src=\"image.jpg\" alt=\"Description of image\" />"
+        },
+        {
+          "language": "html",
+          "code": "<p>This is line one.<br />This is line two.</p>"
+        },
+        {
+          "language": "html",
+          "code": "<p>Section 1</p>\n<hr />\n<p>Section 2</p>"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "HTML Document Structure",
+      "content": "Every HTML document follows this basic structure:\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Page Title</title>\n  </head>\n  <body>\n    <!-- All visible content goes here -->\n    <h1>Main Heading</h1>\n    <p>Paragraph text...</p>\n  </body>\n</html>\n```\n\n### Visual Representation:\n\n```\n┌─────────────────────────────────┐\n│ <!DOCTYPE html>                 │\n│ ┌─────────────────────────────┐ │\n│ │ <html>                      │ │\n│ │ ┌─────────────────────────┐ │ │\n│ │ │ <head>                  │ │ │\n│ │ │   <title>...</title>    │ │ │\n│ │ │ </head>                 │ │ │\n│ │ └─────────────────────────┘ │ │\n│ │ ┌─────────────────────────┐ │ │\n│ │ │ <body>                  │ │ │\n│ │ │   <h1>...</h1>          │ │ │\n│ │ │   <p>...</p>            │ │ │\n│ │ │ </body>                 │ │ │\n│ │ └─────────────────────────┘ │ │\n│ │ </html>                     │ │\n│ └─────────────────────────────┘ │\n└─────────────────────────────────┘\n```",
+      "contentHtml": "<p>Every HTML document follows this basic structure:</p>\n<pre><code class=\"language-html\">&lt;!DOCTYPE html&gt;\n&lt;html lang=&quot;en&quot;&gt;\n  &lt;head&gt;\n    &lt;meta charset=&quot;UTF-8&quot; /&gt;\n    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;\n    &lt;title&gt;Page Title&lt;/title&gt;\n  &lt;/head&gt;\n  &lt;body&gt;\n    &lt;!-- All visible content goes here --&gt;\n    &lt;h1&gt;Main Heading&lt;/h1&gt;\n    &lt;p&gt;Paragraph text...&lt;/p&gt;\n  &lt;/body&gt;\n&lt;/html&gt;\n</code></pre>\n<h3>Visual Representation:</h3>\n<pre><code>┌─────────────────────────────────┐\n│ &lt;!DOCTYPE html&gt;                 │\n│ ┌─────────────────────────────┐ │\n│ │ &lt;html&gt;                      │ │\n│ │ ┌─────────────────────────┐ │ │\n│ │ │ &lt;head&gt;                  │ │ │\n│ │ │   &lt;title&gt;...&lt;/title&gt;    │ │ │\n│ │ │ &lt;/head&gt;                 │ │ │\n│ │ └─────────────────────────┘ │ │\n│ │ ┌─────────────────────────┐ │ │\n│ │ │ &lt;body&gt;                  │ │ │\n│ │ │   &lt;h1&gt;...&lt;/h1&gt;          │ │ │\n│ │ │   &lt;p&gt;...&lt;/p&gt;            │ │ │\n│ │ │ &lt;/body&gt;                 │ │ │\n│ │ └─────────────────────────┘ │ │\n│ │ &lt;/html&gt;                     │ │\n│ └─────────────────────────────┘ │\n└─────────────────────────────────┘\n</code></pre>\n",
+      "hasCode": true,
+      "codeBlocks": [
+        {
+          "language": "html",
+          "code": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Page Title</title>\n  </head>\n  <body>\n    <!-- All visible content goes here -->\n    <h1>Main Heading</h1>\n    <p>Paragraph text...</p>\n  </body>\n</html>"
+        },
+        {
+          "language": "text",
+          "code": "┌─────────────────────────────────┐\n│ <!DOCTYPE html>                 │\n│ ┌─────────────────────────────┐ │\n│ │ <html>                      │ │\n│ │ ┌─────────────────────────┐ │ │\n│ │ │ <head>                  │ │ │\n│ │ │   <title>...</title>    │ │ │\n│ │ │ </head>                 │ │ │\n│ │ └─────────────────────────┘ │ │\n│ │ ┌─────────────────────────┐ │ │\n│ │ │ <body>                  │ │ │\n│ │ │   <h1>...</h1>          │ │ │\n│ │ │   <p>...</p>            │ │ │\n│ │ │ </body>                 │ │ │\n│ │ └─────────────────────────┘ │ │\n│ │ </html>                     │ │\n│ └─────────────────────────────┘ │\n└─────────────────────────────────┘"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "️ Hands-On Practice",
+      "content": "### Exercise 1: Create Your First Page\n\nCreate a file called `index.html` and add:\n\n```html\n<!DOCTYPE html>\n<html>\n  <head>\n    <title>About Me</title>\n  </head>\n  <body>\n    <h1>About Me</h1>\n    <p>Hi! My name is [Your Name].</p>\n    <p>I am learning HTML!</p>\n  </body>\n</html>\n```\n\n**To view it:**\n\n1. Save the file\n2. Double-click to open in a browser\n3. See your first webpage! 🎉\n\n### Exercise 2: Add More Elements\n\nEnhance your page with:\n\n```html\n<!DOCTYPE html>\n<html>\n  <head>\n    <title>About Me</title>\n  </head>\n  <body>\n    <h1>About Me</h1>\n\n    <h2>Introduction</h2>\n    <p>Hi! My name is [Your Name].</p>\n    <p>I am learning HTML!</p>\n\n    <h2>My Interests</h2>\n    <p>I enjoy:</p>\n    <ul>\n      <li>Coding</li>\n      <li>Reading</li>\n      <li>Gaming</li>\n    </ul>\n\n    <h2>Contact</h2>\n    <p>Email me at: <a href=\"mailto:your@email.com\">your@email.com</a></p>\n\n    <hr />\n    <p><small>&copy; 2024 [Your Name]. All rights reserved.</small></p>\n  </body>\n</html>\n```\n\n### Exercise 3: Understanding the Structure\n\nTry this experiment:\n\n1. Remove the `<!DOCTYPE html>` - what happens?\n2. Remove a closing `</p>` tag - what happens?\n3. Change `<h1>` to `<h6>` - what's different?\n4. Add multiple `<br>` tags - what do you see?",
+      "contentHtml": "<h3>Exercise 1: Create Your First Page</h3>\n<p>Create a file called <code>index.html</code> and add:</p>\n<pre><code class=\"language-html\">&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n  &lt;head&gt;\n    &lt;title&gt;About Me&lt;/title&gt;\n  &lt;/head&gt;\n  &lt;body&gt;\n    &lt;h1&gt;About Me&lt;/h1&gt;\n    &lt;p&gt;Hi! My name is [Your Name].&lt;/p&gt;\n    &lt;p&gt;I am learning HTML!&lt;/p&gt;\n  &lt;/body&gt;\n&lt;/html&gt;\n</code></pre>\n<p><strong>To view it:</strong></p>\n<ol>\n<li>Save the file</li>\n<li>Double-click to open in a browser</li>\n<li>See your first webpage! 🎉</li>\n</ol>\n<h3>Exercise 2: Add More Elements</h3>\n<p>Enhance your page with:</p>\n<pre><code class=\"language-html\">&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n  &lt;head&gt;\n    &lt;title&gt;About Me&lt;/title&gt;\n  &lt;/head&gt;\n  &lt;body&gt;\n    &lt;h1&gt;About Me&lt;/h1&gt;\n\n    &lt;h2&gt;Introduction&lt;/h2&gt;\n    &lt;p&gt;Hi! My name is [Your Name].&lt;/p&gt;\n    &lt;p&gt;I am learning HTML!&lt;/p&gt;\n\n    &lt;h2&gt;My Interests&lt;/h2&gt;\n    &lt;p&gt;I enjoy:&lt;/p&gt;\n    &lt;ul&gt;\n      &lt;li&gt;Coding&lt;/li&gt;\n      &lt;li&gt;Reading&lt;/li&gt;\n      &lt;li&gt;Gaming&lt;/li&gt;\n    &lt;/ul&gt;\n\n    &lt;h2&gt;Contact&lt;/h2&gt;\n    &lt;p&gt;Email me at: &lt;a href=&quot;mailto:your@email.com&quot;&gt;your@email.com&lt;/a&gt;&lt;/p&gt;\n\n    &lt;hr /&gt;\n    &lt;p&gt;&lt;small&gt;&amp;copy; 2024 [Your Name]. All rights reserved.&lt;/small&gt;&lt;/p&gt;\n  &lt;/body&gt;\n&lt;/html&gt;\n</code></pre>\n<h3>Exercise 3: Understanding the Structure</h3>\n<p>Try this experiment:</p>\n<ol>\n<li>Remove the <code>&lt;!DOCTYPE html&gt;</code> - what happens?</li>\n<li>Remove a closing <code>&lt;/p&gt;</code> tag - what happens?</li>\n<li>Change <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> - what&#39;s different?</li>\n<li>Add multiple <code>&lt;br&gt;</code> tags - what do you see?</li>\n</ol>\n",
+      "hasCode": true,
+      "codeBlocks": [
+        {
+          "language": "html",
+          "code": "<!DOCTYPE html>\n<html>\n  <head>\n    <title>About Me</title>\n  </head>\n  <body>\n    <h1>About Me</h1>\n    <p>Hi! My name is [Your Name].</p>\n    <p>I am learning HTML!</p>\n  </body>\n</html>"
+        },
+        {
+          "language": "html",
+          "code": "<!DOCTYPE html>\n<html>\n  <head>\n    <title>About Me</title>\n  </head>\n  <body>\n    <h1>About Me</h1>\n\n    <h2>Introduction</h2>\n    <p>Hi! My name is [Your Name].</p>\n    <p>I am learning HTML!</p>\n\n    <h2>My Interests</h2>\n    <p>I enjoy:</p>\n    <ul>\n      <li>Coding</li>\n      <li>Reading</li>\n      <li>Gaming</li>\n    </ul>\n\n    <h2>Contact</h2>\n    <p>Email me at: <a href=\"mailto:your@email.com\">your@email.com</a></p>\n\n    <hr />\n    <p><small>&copy; 2024 [Your Name]. All rights reserved.</small></p>\n  </body>\n</html>"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Key Takeaways",
+      "content": "✅ **HTML is the foundation** of all websites  \n✅ **HTML uses tags** to structure content  \n✅ **Every HTML document** needs `<!DOCTYPE html>`, `<html>`, `<head>`, and `<body>`  \n✅ **Elements can be nested** inside each other  \n✅ **Always close your tags** (except empty elements)  \n✅ **Use semantic tags** - they describe the content's meaning",
+      "contentHtml": "<p>✅ <strong>HTML is the foundation</strong> of all websites<br>✅ <strong>HTML uses tags</strong> to structure content<br>✅ <strong>Every HTML document</strong> needs <code>&lt;!DOCTYPE html&gt;</code>, <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, and <code>&lt;body&gt;</code><br>✅ <strong>Elements can be nested</strong> inside each other<br>✅ <strong>Always close your tags</strong> (except empty elements)<br>✅ <strong>Use semantic tags</strong> - they describe the content&#39;s meaning</p>\n",
+      "hasCode": false,
+      "codeBlocks": []
+    },
+    {
+      "id": 11,
+      "title": "Next Steps",
+      "content": "Now that you understand HTML basics, you can:\n\n1. **Learn more HTML tags** - forms, tables, lists, etc.\n2. **Add CSS** - make your pages beautiful!\n3. **Learn JavaScript** - make your pages interactive!\n4. **Build projects** - practice makes perfect!",
+      "contentHtml": "<p>Now that you understand HTML basics, you can:</p>\n<ol>\n<li><strong>Learn more HTML tags</strong> - forms, tables, lists, etc.</li>\n<li><strong>Add CSS</strong> - make your pages beautiful!</li>\n<li><strong>Learn JavaScript</strong> - make your pages interactive!</li>\n<li><strong>Build projects</strong> - practice makes perfect!</li>\n</ol>\n",
+      "hasCode": false,
+      "codeBlocks": []
+    },
+    {
+      "id": 12,
+      "title": "Additional Resources",
+      "content": "- [W3Schools HTML Tutorial](https://www.w3schools.com/html/)\n- [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML)\n- [HTML Validator](https://validator.w3.org/)",
+      "contentHtml": "<ul>\n<li><a href=\"https://www.w3schools.com/html/\">W3Schools HTML Tutorial</a></li>\n<li><a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML\">MDN Web Docs</a></li>\n<li><a href=\"https://validator.w3.org/\">HTML Validator</a></li>\n</ul>\n",
+      "hasCode": false,
+      "codeBlocks": []
+    },
+    {
+      "id": 13,
+      "title": "Quick Reference",
+      "content": "### Basic Template\n\n```html\n<!DOCTYPE html>\n<html>\n  <head>\n    <title>Title</title>\n  </head>\n  <body>\n    <!-- Content here -->\n  </body>\n</html>\n```\n\n### Common Tags Cheat Sheet\n\n| Tag              | Purpose         | Example                         |\n| ---------------- | --------------- | ------------------------------- |\n| `<h1>` to `<h6>` | Headings        | `<h1>Title</h1>`                |\n| `<p>`            | Paragraph       | `<p>Text</p>`                   |\n| `<a>`            | Link            | `<a href=\"url\">Link</a>`        |\n| `<img>`          | Image           | `<img src=\"pic.jpg\" alt=\"Pic\">` |\n| `<br>`           | Line break      | `Line 1<br>Line 2`              |\n| `<hr>`           | Horizontal line | `<hr>`                          |\n| `<strong>`       | Bold text       | `<strong>Bold</strong>`         |\n| `<em>`           | Italic text     | `<em>Italic</em>`               |\n| `<ul>`           | Unordered list  | `<ul><li>Item</li></ul>`        |\n| `<ol>`           | Ordered list    | `<ol><li>Item</li></ol>`        |",
+      "contentHtml": "<h3>Basic Template</h3>\n<pre><code class=\"language-html\">&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n  &lt;head&gt;\n    &lt;title&gt;Title&lt;/title&gt;\n  &lt;/head&gt;\n  &lt;body&gt;\n    &lt;!-- Content here --&gt;\n  &lt;/body&gt;\n&lt;/html&gt;\n</code></pre>\n<h3>Common Tags Cheat Sheet</h3>\n<table>\n<thead>\n<tr>\n<th>Tag</th>\n<th>Purpose</th>\n<th>Example</th>\n</tr>\n</thead>\n<tbody><tr>\n<td><code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code></td>\n<td>Headings</td>\n<td><code>&lt;h1&gt;Title&lt;/h1&gt;</code></td>\n</tr>\n<tr>\n<td><code>&lt;p&gt;</code></td>\n<td>Paragraph</td>\n<td><code>&lt;p&gt;Text&lt;/p&gt;</code></td>\n</tr>\n<tr>\n<td><code>&lt;a&gt;</code></td>\n<td>Link</td>\n<td><code>&lt;a href=&quot;url&quot;&gt;Link&lt;/a&gt;</code></td>\n</tr>\n<tr>\n<td><code>&lt;img&gt;</code></td>\n<td>Image</td>\n<td><code>&lt;img src=&quot;pic.jpg&quot; alt=&quot;Pic&quot;&gt;</code></td>\n</tr>\n<tr>\n<td><code>&lt;br&gt;</code></td>\n<td>Line break</td>\n<td><code>Line 1&lt;br&gt;Line 2</code></td>\n</tr>\n<tr>\n<td><code>&lt;hr&gt;</code></td>\n<td>Horizontal line</td>\n<td><code>&lt;hr&gt;</code></td>\n</tr>\n<tr>\n<td><code>&lt;strong&gt;</code></td>\n<td>Bold text</td>\n<td><code>&lt;strong&gt;Bold&lt;/strong&gt;</code></td>\n</tr>\n<tr>\n<td><code>&lt;em&gt;</code></td>\n<td>Italic text</td>\n<td><code>&lt;em&gt;Italic&lt;/em&gt;</code></td>\n</tr>\n<tr>\n<td><code>&lt;ul&gt;</code></td>\n<td>Unordered list</td>\n<td><code>&lt;ul&gt;&lt;li&gt;Item&lt;/li&gt;&lt;/ul&gt;</code></td>\n</tr>\n<tr>\n<td><code>&lt;ol&gt;</code></td>\n<td>Ordered list</td>\n<td><code>&lt;ol&gt;&lt;li&gt;Item&lt;/li&gt;&lt;/ol&gt;</code></td>\n</tr>\n</tbody></table>\n",
+      "hasCode": true,
+      "codeBlocks": [
+        {
+          "language": "html",
+          "code": "<!DOCTYPE html>\n<html>\n  <head>\n    <title>Title</title>\n  </head>\n  <body>\n    <!-- Content here -->\n  </body>\n</html>"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "title": "Untitled Slide",
+      "content": "**Happy Coding! 🎉**\n\nRemember: Everyone starts as a beginner. The key is to **practice, experiment, and have fun!**",
+      "contentHtml": "<p><strong>Happy Coding! 🎉</strong></p>\n<p>Remember: Everyone starts as a beginner. The key is to <strong>practice, experiment, and have fun!</strong></p>\n",
+      "hasCode": false,
+      "codeBlocks": []
+    }
+  ]
+}

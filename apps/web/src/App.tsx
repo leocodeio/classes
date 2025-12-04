@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Landing } from "./pages/Landing";
 import { Profile } from "./pages/Profile";
+import { Slides } from "./pages/Slides";
 import Login from "./pages/Login";
 import Callback from "./pages/Callback";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/callback" element={<Callback />} />
+        <Route path="/slides/:category/:topic" element={<Slides />} />
         <Route
           path="/profile"
           element={

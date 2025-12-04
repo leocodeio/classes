@@ -2,11 +2,18 @@
   "name": "classes",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
+    "build:content": "node scripts/build-content.js",
+    "build": "pnpm build:content && turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"
+  },
+  "dependencies": {
+    "glob": "^10.3.0",
+    "highlight.js": "^11.8.0",
+    "js-yaml": "^4.1.0",
+    "marked": "^11.0.0"
   },
   "devDependencies": {
     "prettier": "^3.6.2",

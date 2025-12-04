@@ -331,50 +331,47 @@ classes/
 - [x] Document workflow steps
 - [x] Commit to GitHub
 
-### Phase 2: Build Scripts & Processing (📍 NEXT)
+### Phase 2: Build Scripts & Processing (✅ DONE)
 
-- [ ] Create `scripts/build-content.js` (plain JavaScript)
-- [ ] Implement Markdown parser (using `marked`)
-- [ ] Implement YAML frontmatter extraction (using `js-yaml`)
-- [ ] Implement slide separator logic (split by `---`)
-- [ ] Implement HTML rendering (marked + highlight.js)
-- [ ] Implement code block syntax highlighting
-- [ ] Add JSON file generation & validation
-- [ ] Add error handling & reporting
-- [ ] Create npm scripts (`build:content`) in root `package.json`
+- [x] Create `scripts/build-content.js` (plain JavaScript)
+- [x] Implement Markdown parser (using `marked`)
+- [x] Implement YAML frontmatter extraction (using `js-yaml`)
+- [x] Implement slide separator logic (split by `---`)
+- [x] Implement HTML rendering (marked + highlight.js)
+- [x] Implement code block syntax highlighting
+- [x] Add JSON file generation & validation
+- [x] Add error handling & reporting
+- [x] Create npm scripts (`build:content`) in root `package.json`
 
-### Phase 3: API Endpoints
+### Phase 3: API Endpoints (✅ DONE)
 
-- [ ] Create content module in `apps/api/`
-- [ ] Implement GET `/api/content`
-- [ ] Implement GET `/api/content/:category`
-- [ ] Implement GET `/api/content/:category/:topic`
-- [ ] Add error handling & validation
-- [ ] Serve `.json` files from `content/` folder
+- [x] Create content module in `apps/api/`
+- [x] Implement GET `/api/content`
+- [x] Implement GET `/api/content/:category`
+- [x] Implement GET `/api/content/:category/:topic`
+- [x] Add error handling & validation
+- [x] Serve `.json` files from `content/` folder
 
-### Phase 4: Frontend Components
+### Phase 4: Frontend Components (✅ DONE)
 
-- [ ] Create `Slides.tsx` page component
-- [ ] Create `SlideViewer` component
-- [ ] Create `SlideHeader` component
-- [ ] Create `SlideContent` component with HTML rendering
-- [ ] Create `SlideNavigation` component
-- [ ] Add keyboard navigation (← →)
-- [ ] Add fullscreen mode
-- [ ] Add code syntax highlighting
-- [ ] Add progress tracking
+- [x] Create `Slides.tsx` page component
+- [x] Create `SlideViewer` component
+- [x] Create `SlideHeader` component
+- [x] Create `SlideContent` component with HTML rendering
+- [x] Create `SlideNavigation` component
+- [x] Add keyboard navigation (← →)
+- [x] Add fullscreen mode
+- [x] Add code syntax highlighting
+- [x] Add progress tracking
 
-### Phase 5: Content Migration
+### Phase 5: Content Migration (✅ DONE)
 
-- [ ] Move existing `apps/api/content/` to root `content/`
-- [ ] Update existing markdown files with frontmatter (title, description, author, etc)
-- [ ] Run `pnpm build:content` to generate JSON files
-- [ ] Test all content in slide viewer
+- [x] Content already at root `content/`
+- [x] Update existing markdown files with frontmatter (title, description, author, etc)
+- [x] Run `pnpm build:content` to generate JSON files
+- [x] Test all content in slide viewer
 
-- [ ] Generate JSON for all files
-- [ ] Test all content in slide viewer
-
-### Phase 6: YouTube Integration
+### Phase 6: YouTube Integration (📍 NEXT)
 
 - [ ] Export slides to PNG/PDF
 - [ ] Add timing/notes for video production
