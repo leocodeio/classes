@@ -1,0 +1,29 @@
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Landing } from "./pages/Landing";
+import { Profile } from "./pages/Profile";
+import Login from "./pages/Login";
+import Callback from "./pages/Callback";
+import ProtectedRoute from "./components/ProtectedRoute";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/callback" element={<Callback />} />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;

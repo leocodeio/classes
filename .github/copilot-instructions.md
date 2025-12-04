@@ -1,0 +1,1 @@
+Use ./agents folder to get prmpts and other details about codebase.
