@@ -1,8 +1,8 @@
-# Agent Workflow Steps
+# Build Process Workflow Steps
 
 ## Overview
 
-This document outlines the step-by-step workflow for the content-to-slides pipeline.
+This document outlines the step-by-step workflow for the content-to-slides pipeline using the build process.
 
 ---
 
@@ -10,11 +10,12 @@ This document outlines the step-by-step workflow for the content-to-slides pipel
 
 ```
 ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│  1. AUTHOR      │     │  2. AGENT       │     │  3. API         │     │  4. FRONTEND    │
+│  1. AUTHOR      │     │  2. BUILD       │     │  3. API         │     │  4. FRONTEND    │
 │                 │     │                 │     │                 │     │                 │
 │  Write .md      │────▶│  Parse & Convert│────▶│  Serve JSON     │────▶│  Render Slides  │
-│  in content/    │     │  to .json       │     │  via endpoints  │     │  with navigation│
+│  in content/    │     │  MD → JSON      │     │  via endpoints  │     │  with navigation│
 └─────────────────┘     └─────────────────┘     └─────────────────┘     └─────────────────┘
+                        (JavaScript)
 ```
 
 ---
@@ -29,27 +30,126 @@ This document outlines the step-by-step workflow for the content-to-slides pipel
 
 ### Author Actions
 
-1. Create/edit markdown file in `content/` folder
-2. Add frontmatter with metadata
+1. Create markdown file in `content/` folder (with proper format)
+2. Add frontmatter with metadata (title, description, author, tags, dates)
 3. Write content using slide separator `---`
 4. Save file
 
 ### Trigger
 
-- Manual: Run agent command
-- Auto: File watcher detects `.md` changes
+- Automatic: File is picked up by next build
+- Manual: Run `pnpm build:content` to generate immediately
 
 ---
 
-## Step 2: Agent Processing
+## Step 2: Build Process Execution
 
-### Input
+### Command
 
-```
-content/webdev/html_zero_to_one.md
+```bash
+pnpm build:content
+# or
+pnpm build  # includes content generation
 ```
 
 ### Processing Steps
+
+````
+┌──────────────────────────────────────────────────────────┐
+│ STEP 2.1: Scan Content Folder                            │
+├──────────────────────────────────────────────────────────┤
+│ • Find all .md files recursively in content/             │
+│ • Get list of files to process                           │
+│ • Skip if no new/modified files (optional caching)       │
+└──────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌──────────────────────────────────────────────────────────┐
+│ STEP 2.2: Read Markdown File                             │
+├──────────────────────────────────────────────────────────┤
+│ • Load file content using fs.readFileSync                │
+│ • Validate file exists                                   │
+│ • Check encoding (UTF-8)                                 │
+└──────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌──────────────────────────────────────────────────────────┐
+│ STEP 2.3: Extract Frontmatter                            │
+├──────────────────────────────────────────────────────────┤
+│ • Parse YAML between opening --- and next ---            │
+│ • Use js-yaml library for parsing                        │
+│ • Extract: title, description, author, tags, created    │
+│ • Validate required fields present                       │
+│ • Handle errors (malformed YAML)                         │
+└──────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌──────────────────────────────────────────────────────────┐
+│ STEP 2.4: Split into Slides                              │
+├──────────────────────────────────────────────────────────┤
+│ • Remove frontmatter from content                        │
+│ • Split remaining content by `---` separator             │
+│ • Filter out empty sections (trim + check length)        │
+│ • Assign sequential IDs (1, 2, 3...)                     │
+│ • Validate at least 1 slide exists                       │
+└──────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌──────────────────────────────────────────────────────────┐
+│ STEP 2.5: Parse Each Slide                               │
+├──────────────────────────────────────────────────────────┤
+│ For each slide section:                                  │
+│ • Extract title from first ## heading                    │
+│ • Extract remaining content after title                  │
+│ • Identify code blocks: ```language ... ```              │
+│ • Set hasCode flag if code blocks exist                  │
+│ • Store code blocks with language info                   │
+│ • Store raw markdown content                             │
+└──────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌──────────────────────────────────────────────────────────┐
+│ STEP 2.6: Render HTML                                    │
+├──────────────────────────────────────────────────────────┤
+│ • Use marked library to convert markdown → HTML          │
+│ • Apply syntax highlighting (highlight.js or prism)     │
+│ • Sanitize HTML (prevent XSS)                            │
+│ • Generate contentHtml field for pre-rendered content    │
+└──────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌──────────────────────────────────────────────────────────┐
+│ STEP 2.7: Build JSON Structure                           │
+├──────────────────────────────────────────────────────────┤
+│ • Create meta object from frontmatter                    │
+│ • Add totalSlides count                                  │
+│ • Add sourceFile reference                               │
+│ • Create slides array with all parsed data               │
+│ • Ensure all required fields present                     │
+└──────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌──────────────────────────────────────────────────────────┐
+│ STEP 2.8: Write JSON File                                │
+├──────────────────────────────────────────────────────────┤
+│ • Write to same directory as source .md                  │
+│ • Filename: {original_name}.json                         │
+│ • Pretty-print with 2-space indentation                  │
+│ • Use fs.writeFileSync                                   │
+│ • Handle write errors                                    │
+└──────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌──────────────────────────────────────────────────────────┐
+│ STEP 2.9: Validate & Report                              │
+├──────────────────────────────────────────────────────────┤
+│ • Validate generated JSON structure                      │
+│ • Check for any parsing errors                           │
+│ • Collect statistics (files, slides, errors)             │
+│ • Print summary with results                             │
+│ • Exit with error code if validation fails               │
+└──────────────────────────────────────────────────────────┘
+````
 
 ````
 ┌──────────────────────────────────────────────────────────┐
@@ -85,44 +185,54 @@ content/webdev/html_zero_to_one.md
 │ For each slide section:                                  │
 │ • Extract title from first ## heading                    │
 │ • Remove title from content                              │
-│ • Identify code blocks (```language ... ```)             │
-│ • Set hasCode flag                                       │
+│ • Identify code blocks: ```language ... ```              │
+│ • Set hasCode flag if code blocks exist                  │
+│ • Store code blocks with language info                   │
 │ • Store raw markdown content                             │
 └──────────────────────────────────────────────────────────┘
                             │
                             ▼
 ┌──────────────────────────────────────────────────────────┐
-│ STEP 2.5: Render HTML                                    │
+│ STEP 2.6: Render HTML                                    │
 ├──────────────────────────────────────────────────────────┤
-│ • Convert markdown to HTML using marked/remark           │
-│ • Apply syntax highlighting to code blocks               │
-│ • Sanitize HTML output                                   │
+│ • Use marked library to convert markdown → HTML          │
+│ • Apply syntax highlighting (highlight.js or prism)     │
+│ • Sanitize HTML (prevent XSS)                            │
+│ • Generate contentHtml field for pre-rendered content    │
 └──────────────────────────────────────────────────────────┘
                             │
                             ▼
 ┌──────────────────────────────────────────────────────────┐
-│ STEP 2.6: Build JSON Structure                           │
+│ STEP 2.7: Build JSON Structure                           │
 ├──────────────────────────────────────────────────────────┤
-│ • Assemble meta object                                   │
-│ • Assemble slides array                                  │
-│ • Calculate totalSlides                                  │
+│ • Create meta object from frontmatter                    │
+│ • Add totalSlides count                                  │
 │ • Add sourceFile reference                               │
+│ • Create slides array with all parsed data               │
+│ • Ensure all required fields present                     │
 └──────────────────────────────────────────────────────────┘
                             │
                             ▼
 ┌──────────────────────────────────────────────────────────┐
-│ STEP 2.7: Write JSON File                                │
+│ STEP 2.8: Write JSON File                                │
 ├──────────────────────────────────────────────────────────┤
-│ • Write to same directory as source                      │
+│ • Write to same directory as source .md                  │
 │ • Filename: {original_name}.json                         │
-│ • Pretty-print for readability                           │
+│ • Pretty-print with 2-space indentation                  │
+│ • Use fs.writeFileSync                                   │
+│ • Handle write errors                                    │
 └──────────────────────────────────────────────────────────┘
-````
-
-### Output
-
-```
-content/webdev/html_zero_to_one.json
+                            │
+                            ▼
+┌──────────────────────────────────────────────────────────┐
+│ STEP 2.9: Validate & Report                              │
+├──────────────────────────────────────────────────────────┤
+│ • Validate generated JSON structure                      │
+│ • Check for any parsing errors                           │
+│ • Collect statistics (files, slides, errors)             │
+│ • Print summary with results                             │
+│ • Exit with error code if validation fails               │
+└──────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -131,13 +241,13 @@ content/webdev/html_zero_to_one.json
 
 ### Endpoints
 
-| Method | Endpoint                        | Description                |
-| ------ | ------------------------------- | -------------------------- |
-| GET    | `/api/content`                  | List all available content |
-| GET    | `/api/content/:category`        | List content in category   |
-| GET    | `/api/content/:category/:topic` | Get slide JSON data        |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/content` | List all available content |
+| GET | `/api/content/:category` | List content in category |
+| GET | `/api/content/:category/:topic` | Get slide JSON data |
 
-### Example Response
+### Response Format
 
 ```json
 GET /api/content/webdev/html_zero_to_one
@@ -153,14 +263,12 @@ GET /api/content/webdev/html_zero_to_one
 ## Step 4: Frontend Rendering
 
 ### Route Structure
-
 ```
 /slides/:category/:topic
 /slides/webdev/html-zero-to-one
 ```
 
 ### Component Flow
-
 ```
 ┌─────────────────────────────────────────────────────────┐
 │ SlideViewerPage                                         │
@@ -190,32 +298,50 @@ GET /api/content/webdev/html_zero_to_one
 
 ---
 
-## File Watcher Setup (Optional)
+## Build Script Technologies
 
-### Using chokidar
-
-```javascript
-// agents/scripts/watch-content.js
-const chokidar = require("chokidar");
-const { processMarkdownFile } = require("./process-markdown");
-
-chokidar.watch("content/**/*.md").on("change", (path) => {
-  console.log(`📝 File changed: ${path}`);
-  processMarkdownFile(path);
-  console.log(`✅ Generated JSON for: ${path}`);
-});
-```
-
-### npm scripts
+### Dependencies Needed
 
 ```json
 {
-  "scripts": {
-    "agent:slides": "node agents/scripts/process-markdown.js",
-    "agent:slides:all": "node agents/scripts/process-all.js",
-    "agent:slides:watch": "node agents/scripts/watch-content.js"
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "marked": "^11.0.0",
+    "highlight.js": "^11.8.0"
+  },
+  "devDependencies": {
+    "glob": "^10.3.0"
   }
 }
+```
+
+### Usage in Scripts
+
+```javascript
+// scripts/build-content.js
+const fs = require('fs');
+const path = require('path');
+const glob = require('glob');
+const yaml = require('js-yaml');
+const { marked } = require('marked');
+const hljs = require('highlight.js');
+
+// Configure marked with highlight.js
+marked.setOptions({
+  highlight: (code, lang) => {
+    if (lang && hljs.getLanguage(lang)) {
+      return hljs.highlight(code, { language: lang }).value;
+    }
+    return hljs.highlightAuto(code).value;
+  }
+});
+
+// Main processing function
+function processContentFiles() {
+  // Logic here...
+}
+
+processContentFiles();
 ```
 
 ---
@@ -223,46 +349,180 @@ chokidar.watch("content/**/*.md").on("change", (path) => {
 ## Error Handling
 
 ### Validation Errors
+| Error | Resolution |
+|-------|------------|
+| Missing frontmatter | Add required YAML block at top |
+| No slides found | Add `---` separators between sections |
+| Empty slide | Remove extra `---` or add content |
+| Missing title | Add `## Heading` after each `---` |
+| Invalid YAML | Check YAML syntax |
 
-| Error               | Resolution                            |
-| ------------------- | ------------------------------------- |
-| Missing frontmatter | Add required YAML block at top        |
-| No slides found     | Add `---` separators between sections |
-| Empty slide         | Remove extra `---` or add content     |
-| Missing title       | Add `## Heading` after each `---`     |
-
-### Agent Output
+### Build Script Output
 
 ```bash
-$ pnpm agent:slides content/webdev/html_zero_to_one.md
+$ pnpm build:content
 
-📖 Reading: content/webdev/html_zero_to_one.md
-✅ Frontmatter parsed
-✅ Found 8 slides
-✅ HTML rendered
-✅ JSON written: content/webdev/html_zero_to_one.json
+❌ ERROR: content/webdev/invalid.md
+   Line 5: Missing required field "author" in frontmatter
 
-Summary:
-  - Title: HTML Zero to One
-  - Slides: 8
-  - Code blocks: 5
-  - Output: 12.4 KB
+📊 Summary:
+   - Files processed: 2
+   - Success: 1
+   - Errors: 1
+```
+├──────────────────────────────────────────────────────────┤
+│ • Write to same directory as source .md                  │
+│ • Filename: {original_name}.json                         │
+│ • Pretty-print with 2-space indentation                  │
+│ • Use fs.writeFileSync                                   │
+│ • Handle write errors                                    │
+└──────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌──────────────────────────────────────────────────────────┐
+│ STEP 2.9: Validate & Report                              │
+├──────────────────────────────────────────────────────────┤
+│ • Validate generated JSON structure                      │
+│ • Check for any parsing errors                           │
+│ • Collect statistics (files, slides, errors)             │
+│ • Print summary with results                             │
+│ • Exit with error code if validation fails               │
+└──────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Quick Reference
+## Step 3: API Serving
 
-### For Content Authors
+### Endpoints
 
-1. Create `.md` file in `content/{category}/`
-2. Add frontmatter at top
-3. Write content with `---` between slides
-4. Run `pnpm agent:slides {filepath}` or wait for auto-generation
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/content` | List all available content |
+| GET | `/api/content/:category` | List content in category |
+| GET | `/api/content/:category/:topic` | Get slide JSON data |
 
-### For Developers
+### Response Format
 
-1. Agent script: `agents/scripts/process-markdown.js`
-2. API endpoint: `apps/api/src/modules/content/`
-3. Frontend route: `apps/web/src/pages/Slides.tsx`
-4. Types: `packages/shared/types/slides.ts` (if using monorepo types)
+```json
+GET /api/content/webdev/html_zero_to_one
+
+{
+  "meta": { ... },
+  "slides": [ ... ]
+}
+```
+
+---
+
+## Step 4: Frontend Rendering
+
+### Route Structure
+```
+/slides/:category/:topic
+/slides/webdev/html-zero-to-one
+```
+
+### Component Flow
+```
+┌─────────────────────────────────────────────────────────┐
+│ SlideViewerPage                                         │
+├─────────────────────────────────────────────────────────┤
+│ • Fetch JSON from API on mount                          │
+│ • Store slides in state                                 │
+│ • Handle keyboard events (← →)                          │
+│                                                         │
+│ ┌─────────────────────────────────────────────────────┐ │
+│ │ SlideHeader                                         │ │
+│ │ • Title, progress bar, slide counter                │ │
+│ └─────────────────────────────────────────────────────┘ │
+│                                                         │
+│ ┌─────────────────────────────────────────────────────┐ │
+│ │ SlideContent                                        │ │
+│ │ • Render current slide HTML                         │ │
+│ │ • Code syntax highlighting                          │ │
+│ └─────────────────────────────────────────────────────┘ │
+│                                                         │
+│ ┌─────────────────────────────────────────────────────┐ │
+│ │ SlideNavigation                                     │ │
+│ │ • Previous / Next buttons                           │ │
+│ │ • Keyboard hints                                    │ │
+│ └─────────────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Build Script Technologies
+
+### Dependencies Needed
+
+```json
+{
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "marked": "^11.0.0",
+    "highlight.js": "^11.8.0"
+  },
+  "devDependencies": {
+    "glob": "^10.3.0"
+  }
+}
+```
+
+### Usage in Scripts
+
+```javascript
+// scripts/build-content.js
+const fs = require('fs');
+const path = require('path');
+const glob = require('glob');
+const yaml = require('js-yaml');
+const { marked } = require('marked');
+const hljs = require('highlight.js');
+
+// Configure marked with highlight.js
+marked.setOptions({
+  highlight: (code, lang) => {
+    if (lang && hljs.getLanguage(lang)) {
+      return hljs.highlight(code, { language: lang }).value;
+    }
+    return hljs.highlightAuto(code).value;
+  }
+});
+
+// Main processing function
+function processContentFiles() {
+  // Logic here...
+}
+
+processContentFiles();
+```
+
+---
+
+## Error Handling
+
+### Validation Errors
+| Error | Resolution |
+|-------|------------|
+| Missing frontmatter | Add required YAML block at top |
+| No slides found | Add `---` separators between sections |
+| Empty slide | Remove extra `---` or add content |
+| Missing title | Add `## Heading` after each `---` |
+| Invalid YAML | Check YAML syntax |
+
+### Build Script Output
+
+```bash
+$ pnpm build:content
+
+❌ ERROR: content/webdev/invalid.md
+   Line 5: Missing required field "author" in frontmatter
+
+📊 Summary:
+   - Files processed: 2
+   - Success: 1
+   - Errors: 1
+```
+````

@@ -206,17 +206,63 @@ content/**/*.md → trigger agent
 
 ---
 
-## Agent Command
+## Build Process Integration
+
+### Automatic JSON Generation
+
+JSON files are **automatically generated during the build process** using plain JavaScript:
 
 ```bash
-# Generate JSON for a specific file
-pnpm agent:slides content/webdev/html_zero_to_one.md
+# Full build (includes content processing)
+pnpm build
 
-# Generate JSON for all markdown files
-pnpm agent:slides:all
+# Just generate content files
+pnpm build:content
+```
 
-# Watch mode (auto-generate on save)
-pnpm agent:slides:watch
+### Build Script Implementation
+
+**Location**: `scripts/build-content.js`
+
+The build script:
+
+1. Scans `content/` folder recursively for `.md` files
+2. Parses YAML frontmatter from each file
+3. Splits content by `---` separator into slides
+4. Extracts slide titles from `## headings`
+5. Renders markdown to HTML
+6. Generates `.json` file in same directory as `.md`
+7. Validates JSON structure
+8. Reports results with summary
+
+### npm Script Configuration
+
+**Location**: `package.json`
+
+```json
+{
+  "scripts": {
+    "build:content": "node scripts/build-content.js",
+    "build": "pnpm build:content && turbo run build"
+  }
+}
+```
+
+### Example Build Output
+
+```bash
+$ pnpm build:content
+
+📖 Processing content files...
+✅ content/webdev/html_zero_to_one.md → .json (8 slides)
+✅ content/devops/docker_basics.md → .json (5 slides)
+✅ content/dsa/arrays_101.md → .json (12 slides)
+
+📊 Summary:
+   - Files processed: 3
+   - Total slides: 25
+   - Errors: 0
+   - Time: 234ms
 ```
 
 ---
